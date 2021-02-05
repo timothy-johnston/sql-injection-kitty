@@ -10,12 +10,6 @@ public class ViewController {
 	@GetMapping({"", "/", "home"})
 	public String index() {
 		return "index";
-	}
-	
-	@GetMapping({"calculator"})
-	public String calculator() {
-		return "calculator";
-	}
-	
+	}	
 
 }
