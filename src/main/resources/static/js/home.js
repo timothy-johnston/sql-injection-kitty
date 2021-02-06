@@ -7,7 +7,7 @@ $(document).ready(function() {
     
     //Attach click event listener to any submit button
     $(".btn-submit-entry").click(function () {
-        submitLogEntry($this);
+        submitLogEntry($(this));
     })
 
     //Load any existing log entries
@@ -36,13 +36,13 @@ function submitLogEntry(clickedButton) {
     //Get data from form, determine whether to write to database with or without prepared statement,
     //and serialize to json
     var entry = {};
-    entry["user"] = $("#input-user").val();
+    entry["name"] = $("#input-user").val();
     entry["message"] = $("#input-message").val();
 
     //Determine whether to write to database with or without prepared statement
-    if ($(this).attr("id") === "btn-submit-prepared") {
+    if ($(clickedButton).attr("id") === "btn-submit-prepared") {
         entry["submitType"] = "prepared";
-    } else if ($(this).attr("id") === "btn-submit-prepared") {
+    } else if ($(clickedButton).attr("id") === "btn-submit-prepared") {
         entry["submitType"] = "injection";
     } else {
         console.error("I award you no points, and may God have mercy on your soul.")
@@ -50,6 +50,7 @@ function submitLogEntry(clickedButton) {
 
     //Configure and submit ajax request
     var entryJson = JSON.stringify(entry);
+    console.log(entryJson);
     $.ajax({
         type: "POST",
         contentType: "application/json",
