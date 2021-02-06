@@ -50,6 +50,20 @@ function submitLogEntry(clickedButton) {
 
     //Configure and submit ajax request
     var entryJson = JSON.stringify(entry);
+    $.ajax({
+        type: "POST",
+        contentType: "application/json",
+        url: "http://localhost:8080/api/submit-entry",
+        data: entryJson,
+        success: function(data) {
+            console.log("Request successful.");
+            console.log(data)
+        },
+        error: function(xhr, status, error) {
+            handleFailedRequest(xhr, status, error);
+        }
+    })
+
 
 }
 
@@ -63,6 +77,13 @@ function submitLogEntry(clickedButton) {
 //function buildTableRowHtml(logEntry) {
 
 //}
+
+function handleFailedRequest(xhr, status, error) {
+    console.log("Failed request: ");
+    console.log(xhr);
+    console.log(status);
+    console.log(error);
+}
 
 // End helper functions ------------------------------------------------
 

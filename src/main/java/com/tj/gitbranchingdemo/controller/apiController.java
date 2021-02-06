@@ -14,18 +14,9 @@ import com.tj.gitbranchingdemo.model.LogEntry;
 public class apiController {
 
 	@PostMapping("/api/submit-entry")
-	public int handleSubmitEntry() {
+	public int handleSubmitEntry(@Valid @RequestBody LogEntry submission) {
 		
-		
-		
-		return sum;
-		
-	}
-	
-	@GetMapping("/api/multiply")
-	public int performMultiplication(@Valid @RequestBody LogEntry submission) {
-		
-		
+		System.out.println("Here I am in the entry submission endpoint!");
 		
 		return 0;
 		
