@@ -17,21 +17,29 @@ import com.tj.gitbranchingdemo.model.LogEntry;
 @RestController
 public class apiController {
 
-//	@PostMapping("/api/submit-entry")
-//	public int handleSubmitEntry(@Valid @RequestBody LogEntry submission) {
-//		
-//		System.out.println("Here I am in the entry submission endpoint!");
-//		
-//		return 0;
-//		
-//	}
 	
 	@PostMapping("/api/submit-entry")
-	public int handleSubmitEntry(@RequestBody LogEntry submission) {
+	public String handleSubmitEntry(@RequestBody LogEntry submission) {
 		
 		System.out.println("Here I am in the entry submission endpoint!");
 		
-		return 0;
+		return "a json representation of the submitted entry, or just its id";
+		
+	}
+	
+	@GetMapping("/api/get-entry")
+	public String handleGetEntry(@RequestParam int id) {
+		
+		System.out.println("Here I am in the entry submission endpoint!");
+		
+		return "a json representation of the requested entry";
+		
+	}
+	
+	@GetMapping("/api/get-entries")
+	public String handleGetEntries() {
+		
+		return "json representation of all entries";
 		
 	}
 	
