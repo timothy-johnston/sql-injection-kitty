@@ -4,18 +4,19 @@ public class LogEntry {
 	
 	String name;
 	String message;
+	int id;
 	enum SubmitType {prepared, injection};
 	SubmitType submitType;
 	
 	//Constructor
-	public LogEntry(String name, String message, SubmitType submitType) {
+	public LogEntry(String name, String message, int id, SubmitType submitType) {
 		this.name = name;
 		this.message = message;
+		this.id = id;
 		this.submitType = submitType;
 	}
 	
 	
-
 	//Getters & setters
 	public String getName() {
 		return name;
@@ -34,6 +35,12 @@ public class LogEntry {
 	}
 	public void setSubmitType(SubmitType submitType) {
 		this.submitType = submitType;
+	}	
+	public int getId() {
+		return id;
+	}
+	public void setId(int id) {
+		this.id = id;
 	}
 
 }
