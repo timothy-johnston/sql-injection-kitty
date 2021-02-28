@@ -5,7 +5,7 @@ public class LogEntry {
 	String name;
 	String message;
 	int id;
-	enum SubmitType {prepared, injection};
+	public enum SubmitType {prepared, injection};
 	SubmitType submitType;
 	
 	//Constructor

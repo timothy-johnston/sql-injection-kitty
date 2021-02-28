@@ -22,6 +22,9 @@ public class apiController {
 	public String handleSubmitEntry(@RequestBody LogEntry submission) {
 		
 		System.out.println("Here I am in the entry submission endpoint!");
+		submission.getMessage();
+		submission.getName();
+		submission.getSubmitType()
 		
 		return "a json representation of the submitted entry, or just its id";
 		

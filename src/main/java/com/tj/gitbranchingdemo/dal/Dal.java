@@ -14,6 +14,7 @@ import org.springframework.jdbc.core.JdbcTemplate;
 
 import com.google.gson.Gson;
 import com.tj.gitbranchingdemo.model.LogEntry;
+import com.tj.gitbranchingdemo.model.LogEntry.SubmitType;
 
 //Data Access Layer
 public class Dal {
@@ -76,12 +77,44 @@ public class Dal {
 			return gson.toJson(entry);
 			
 		}
+		
+		public String persistEntry(LogEntry submission) {
+			
+			String response = null;
+			
+			if (submission.getSubmitType().equals(SubmitType.prepared)) {
+				response = persistWithParameterizedQuery(submission);
+			} else if (submission.getSubmitType().equals(SubmitType.injection)) {
+				response = persistWithoutParameterizedQuery(submission);
+			} else {
+				response = "Invalid submission type";
+			}
 				
-		private String persistWithParameterizedQuery() {
+			
+			return response;
+			
+			
+			
+			
+			
+			
+		}
+				
+		private String persistWithParameterizedQuery(LogEntry submission) {
+			
+			
+			
+			
+			
 			return "string";
 		}
 		
-		private String persistWithoutParameterizedQuery() {
+		private String persistWithoutParameterizedQuery(LogEntry submission) {
+			
+			
+			
+			
+			
 			return "string";
 		}
 		
