@@ -78,7 +78,7 @@ public class Dal {
 			
 		}
 		
-		public String persistEntry(LogEntry submission) {
+		public String persistEntry(LogEntry submission) throws SQLException {
 			
 			String response = null;
 			
@@ -94,14 +94,20 @@ public class Dal {
 			return response;
 			
 			
-			
-			
-			
-			
 		}
-				
-		private String persistWithParameterizedQuery(LogEntry submission) {
+		
+		//https://docs.oracle.com/javase/tutorial/jdbc/basics/prepared.html
+		private String persistWithParameterizedQuery(LogEntry submission) throws SQLException {
 			
+			String name = submission.getName();
+			String message = submission.getMessage();
+			
+			String sql = "INSERT INTO log_entries (name, message) VALUES (?, ?, ?)";
+			
+			PreparedStatement statement = conn.prepareStatement(sql);
+			
+			statement.setString(1, name);
+			statement.setString(2, message);
 			
 			
 			
@@ -109,9 +115,16 @@ public class Dal {
 			return "string";
 		}
 		
-		private String persistWithoutParameterizedQuery(LogEntry submission) {
+		private String persistWithoutParameterizedQuery(LogEntry submission) throws SQLException {
 			
 			
+			String name = submission.getName();
+			String message = submission.getMessage();
+			
+			String sql = "INSERT INTO log_entries (name, message) VALUES ('" + name + "', '" + message + "')";
+			
+			Statement statement = conn.createStatement();
+			ResultSet result = statement.executeQuery(sql);
 			
 			
 			
